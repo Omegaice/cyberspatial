@@ -73,7 +73,7 @@ resource "kubernetes_secret" "postgres" {
   }
   data {
     username = "admin"
-    password = "mysecretpasswords"
+    password = "mysecretpassword"
   }
 }
 
@@ -90,6 +90,7 @@ resource "kubernetes_persistent_volume_claim" "postgres" {
     }
     volume_name = "${kubernetes_persistent_volume.postgres.metadata.0.name}"
   }
+  depends_on = ["google_compute_disk.postgres-disk"]
 }
 
 resource "kubernetes_persistent_volume" "postgres" {
