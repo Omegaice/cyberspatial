@@ -72,7 +72,7 @@ resource "kubernetes_secret" "postgres" {
     name = "postgres-auth"
   }
   data {
-    username = "admin"
+    username = "postgres"
     password = "mysecretpassword"
   }
 }

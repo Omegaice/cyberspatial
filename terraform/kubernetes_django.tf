@@ -40,7 +40,7 @@ resource "kubernetes_replication_controller" "django" {
         }
         env {
           name = "DATABASE_URL"
-          value = "postgres://njcoast:mysecretpassword@postgres:5432/postgres"
+          value = "postgres://postgres:mysecretpassword@postgres:5432/postgres"
         }
         env {
           name = "ALLOWED_HOSTS"
@@ -74,7 +74,7 @@ resource "kubernetes_replication_controller" "django" {
     }
   }
   provisioner "local-exec" {
-    command = "/bin/sh terraform/migrate_data.sh"
+    command = "./terraform/migrate_data.sh"
   }
   depends_on = [
     "kubernetes_replication_controller.postgres",
