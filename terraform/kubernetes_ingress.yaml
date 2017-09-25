@@ -3,10 +3,18 @@ kind: Ingress
 metadata:
   name: fanout-ingress
   annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+    ingress.kubernetes.io/force-ssl-redirect: "true"
     kubernetes.io/ingress.global-static-ip-name: default-ingress
 spec:
+  tls:
+  - hosts:
+    - njcoast.us
+    secretName: njcoast-tls
   rules:
-  - http:
+  - host: njcoast.us
+    http:
       paths:
       - path: /
         backend:
