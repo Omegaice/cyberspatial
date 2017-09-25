@@ -11,10 +11,10 @@ resource "kubernetes_service" "django" {
       app = "${kubernetes_replication_controller.django.metadata.0.labels.app}"
     }
     port {
-      port = 80
+      port = 8000
       target_port = 8000
     }
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 

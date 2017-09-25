@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fanout-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: default-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: django
+          servicePort: 8000
+      - path: /*
+        backend:
+          serviceName: django
+          servicePort: 8000
+      - path: /geoserver
+        backend:
+          serviceName: geoserver
+          servicePort: 8080
+      - path: /geoserver/*
+        backend:
+          serviceName: geoserver
+          servicePort: 8080

@@ -11,10 +11,10 @@ resource "kubernetes_service" "geoserver" {
       app = "${kubernetes_replication_controller.geoserver.metadata.0.labels.app}"
     }
     port {
-      port = 80
+      port = 8080
       target_port = 8080
     }
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 

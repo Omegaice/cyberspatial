@@ -32,3 +32,7 @@ resource "google_compute_disk" "geoserver-disk" {
   zone  = "us-central1-b"
   size  = 200
 }
+
+resource "google_compute_address" "default" {
+  name = "default-ingress"
+}
